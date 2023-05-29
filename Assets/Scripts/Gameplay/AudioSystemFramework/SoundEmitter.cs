@@ -49,6 +49,11 @@ namespace Gameplay.AudioSystemFramework
             _audioSource.Pause();
         }
 
+        public void Stop()
+        {
+            _audioSource.Stop();
+        }
+
         /// <summary>
         /// Resume playing the sound
         /// </summary>

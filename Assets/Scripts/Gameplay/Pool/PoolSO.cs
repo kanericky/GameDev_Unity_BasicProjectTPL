@@ -15,7 +15,12 @@ namespace Gameplay.Pool
 
         public abstract IFactory<T> Factory { get; set; }
 
-        protected bool HasBeenPreSetup { get; set; }
+        protected bool hasBeenPreSetup = false;
+        protected bool HasBeenPreSetup
+        {
+            get => hasBeenPreSetup; 
+            set => hasBeenPreSetup = value; 
+        }
 
         protected virtual T Create()
         {
