@@ -59,11 +59,6 @@ namespace Gameplay.AudioSystemFramework
             }
         }
 
-        private void Update()
-        {
-            Debug.Log(pool.PoolSize);
-        }
-
         public void SetGroupVolume(string parameterName, float normalizedVolume)
         {
             bool volumeSet = audioMixer.SetFloat(parameterName, NormalizedToMixerValue(normalizedVolume));
