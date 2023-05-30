@@ -22,6 +22,8 @@ namespace Gameplay.Pool
             set => hasBeenPreSetup = value; 
         }
 
+        public int PoolSize => Available.Count;
+
         protected virtual T Create()
         {
             return Factory.Create();
@@ -33,11 +35,12 @@ namespace Gameplay.Pool
         /// <param name="poolSize"></param>
         public virtual void PreSetup(int poolSize)
         {
+            /*
             if (HasBeenPreSetup)
             {
                 Debug.LogWarning($"Pool {name} has already been pre setup, please check for duplicated code");
                 return;
-            }
+            }*/
 
             for (int i = 0; i < poolSize; i++)
             {

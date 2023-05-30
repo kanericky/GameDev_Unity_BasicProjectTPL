@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac1b105467e7004ca92e6e3c4c090e9, type: 3}
   m_Name: AudioCue TestA
   m_EditorClassIdentifier: 
-  isLoop: 1
+  isLoop: 0
   _audioClipGroups:
   - sequenceMode: 2
     audioClips:

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Gameplay.Utilities;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -11,6 +12,8 @@ namespace Gameplay.AudioSystemFramework
         [SerializeField] private SoundEmitterFactorySO factory = default;
         [SerializeField] private SoundEmitterPoolSO pool = default;
         [SerializeField] private int initialSize = 10;
+
+        private List<SoundEmitter> _activateSoundEmitters = new List<SoundEmitter>();
 
         [Header("Audio Channels")] 
         [Tooltip("SFX CHANNEL -The Sound Manager listen to this event")]
@@ -25,9 +28,10 @@ namespace Gameplay.AudioSystemFramework
         [Range(0f, 1f)] [SerializeField] private float sfxVolume = 1f;
         [Range(0f, 1f)] [SerializeField] private float musicVolume = 1f;
         
-        private static readonly string MASTER_VOLUME = "MasterVolume";
-        private static readonly string MUSIC_VOLUME = "MusicVolume";
-        private static readonly string SFX_VOLUME = "SFXVolume";
+        // Const string for change volume in different mix groups, DO NOT change unless you know what you are doing
+        private const string MASTER_VOLUME = "MasterVolume";
+        private const string MUSIC_VOLUME = "MusicVolume";
+        private const string SFX_VOLUME = "SFXVolume";
 
         protected override void Awake()
         {
@@ -39,6 +43,10 @@ namespace Gameplay.AudioSystemFramework
             
             pool.PreSetup(initialSize);
             pool.SetParent(transform);
+            
+            SetGroupVolume(MASTER_VOLUME, masterVolume);
+            SetGroupVolume(MUSIC_VOLUME, musicVolume);
+            SetGroupVolume(SFX_VOLUME, sfxVolume);
         }
 
         private void OnValidate()
@@ -49,6 +57,11 @@ namespace Gameplay.AudioSystemFramework
                 SetGroupVolume(MUSIC_VOLUME, musicVolume);
                 SetGroupVolume(SFX_VOLUME, sfxVolume);
             }
+        }
+
+        private void Update()
+        {
+            Debug.Log(pool.PoolSize);
         }
 
         public void SetGroupVolume(string parameterName, float normalizedVolume)
@@ -67,9 +80,11 @@ namespace Gameplay.AudioSystemFramework
 
         private void PlayAudioCue(AudioCueSO audioCue, AudioConfigurationSO audioConfig, Vector3 positionInSpace)
         {
+            // Get all the clips needed to be played
             AudioClip[] clipsToPlay = audioCue.GetClips();
             int numOfClips = clipsToPlay.Length;
 
+            // Play the audio clip
             for (int i = 0; i < numOfClips; i++)
             {
                 SoundEmitter soundEmitter = pool.Request();
@@ -80,6 +95,10 @@ namespace Gameplay.AudioSystemFramework
                     {
                         soundEmitter.OnSoundFinishedPlaying += OnSoundEmitterFinishedPlaying;
                     }
+                }
+                else
+                {
+                    Debug.LogAssertion("1");
                 }
             }
         }

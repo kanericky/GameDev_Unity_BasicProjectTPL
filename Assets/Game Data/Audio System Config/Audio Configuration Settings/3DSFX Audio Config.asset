@@ -15,7 +15,7 @@ MonoBehaviour:
   OutputAudioMixerGroup: {fileID: -8112346181604647713, guid: 7f0a9d52f19485b479e66240d0c3fcee, type: 2}
   _priorityLevel: 128
   isMute: 0
-  volume: 1
+  volume: 0
   pitch: 1
   panStereo: 0
   reverbZoneMix: 1
