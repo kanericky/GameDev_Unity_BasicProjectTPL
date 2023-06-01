@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Game%20Data/UI%20Data/MenuUI.uss?fileID=7433441132597879392&amp;guid=71060cb161d797a469da16943d634a57&amp;type=3#MenuUI" />
+    <ui:VisualElement style="width: auto; height: auto; justify-content: flex-end; align-items: center;">
+        <ui:VisualElement name="MenuTitleContainer" style="height: 400px; align-items: center; justify-content: center;">
+            <ui:Label text="Game Main Menu" display-tooltip-when-elided="true" name="GameTitle" class="titleH1" />
+        </ui:VisualElement>
+        <ui:VisualElement name="MenuButtonUIContainer" style="height: 1080px; width: 1920px; align-items: center; justify-content: center; margin-top: 0;">
+            <ui:Button text="Button" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" class="button" />
+        </ui:VisualElement>
+        <ui:VisualElement name="MenuBottom" style="margin-bottom: 0; height: 250px; width: 1920px;" />
+    </ui:VisualElement>
+</ui:UXML>
